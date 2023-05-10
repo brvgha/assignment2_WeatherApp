@@ -7,12 +7,13 @@
       <th>Temperature</th>
       <th>Wind Speed</th>
       <th>Pressure</th>
+      <th>Wind Direction</th>
     </tr>
     </thead>
     <tbody>
     #{list items:_station.readings, as: 'reading'}
     <tr>
-      <td>
+      <td class="body">
           ${reading.code}
       </td>
       <td>
@@ -23,6 +24,16 @@
       </td>
       <td>
           ${reading.pressure}
+      </td>
+      <td>
+          ${reading.windDirection}
+      </td>
+      <td>
+        <div class="buttons fas fa-trash">
+          <a href="/stations/${_station.id}/deletereading/${reading.id}" class="button icon is-small is-danger">
+            <span>Delete</span>
+          </a>
+        </div>
       </td>
     </tr>
     #{/list}
