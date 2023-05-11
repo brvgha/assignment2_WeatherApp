@@ -1,0 +1,50 @@
+#{extends 'main.html' /}
+#{set title:'Station' /}
+
+#{menu id:"dashboard"/}
+<style>
+  p{
+    color: black;
+  }
+</style>
+<div class="content box">
+  <section>
+    <div class = "columns is-centred">
+      <div class = "column is-one-fifth">
+        <div class="box has-background-grey">
+          <h2 id="stationname" class="has-text-white">${station.name}</h2>
+        </div>
+      </div>
+      <div class = "column is-one-fifth" >
+        <div class="box has-background-grey">
+          <h2 class="weather has-text-white">Weather</h2>
+          <p>${station.predictWeather()}</p>
+          <p></p>
+        </div>
+      </div>
+      <div class = "column is-one-fifth">
+        <div class="box has-background-grey">
+          <h2 class="temp has-text-white">Temp.</h2>
+          <p>${station.mostRecentReading().temperature}&degC</p>
+          <p>${station.celsiusToFahrenheit()}&degF</p>
+        </div>
+      </div>
+      <div class = "column is-one-fifth">
+        <div class="box has-background-grey">
+          <h2 class="wind has-text-white">Wind</h2>
+          <p>${station.mostRecentReading().windSpeed}kt</p>
+          <p>${station.mostRecentReading().windDirection}&deg</p>
+        </div>
+      </div>
+      <div class = "column is-one-fifth">
+        <div class="box has-background-grey">
+          <h2 class="pressure has-text-white">Pressure</h2>
+          <p>${station.mostRecentReading().pressure}hPa</p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  #{listinformation station:station /}
+  #{addreading station:station /}
+</div>

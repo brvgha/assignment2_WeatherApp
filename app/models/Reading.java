@@ -22,4 +22,18 @@ public class Reading extends Model {
         this.pressure = pressure;
     }
 
+<<<<<<< Updated upstream
+=======
+
+    /*public static String predictWeather(float temperature, float windSpeed, int pressure, int windDirection){
+        ArrayList<String> typesOfWeather = new ArrayList<String>();
+        Random randomNo = new Random();
+        int randomInt = randomNo.nextInt(typesOfWeather.size());
+        typesOfWeather.add("Rain");
+        typesOfWeather.add("Sunshine");
+        typesOfWeather.add("Overcast");
+        typesOfWeather.add("Windy");
+        return typesOfWeather.get(randomInt);
+    }*/
+>>>>>>> Stashed changes
 }
