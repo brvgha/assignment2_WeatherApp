@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:'Station' /}
+
+#{menu id:"dashboard"/}
+<div class="content box">
+  <section>
+    <div class = "columns is-centred">
+      <div class = "column is-one-fifth">
+        <div class="box has-background-grey">
+          <h2 class="has-text-white">${station.name}</h2>
+        </div>
+      </div>
+      <div class = "column is-one-fifth" >
+        <div class="box has-background-grey">
+          <h2 class="weather has-text-white">Weather</h2>
+        </div>
+      </div>
+      <div class = "column is-one-fifth">
+        <div class="box has-background-grey">
+          <h2 class="temp has-text-white">Temp.</h2>
+        </div>
+      </div>
+      <div class = "column is-one-fifth">
+        <div class="box has-background-grey">
+          <h2 class="wind has-text-white">Wind</h2>
+        </div>
+      </div>
+      <div class = "column is-one-fifth">
+        <div class="box has-background-grey">
+          <h2 class="pressure has-text-white">Pressure</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  #{listinformation station:station /}
+  #{addreading station:station /}
+</div>
