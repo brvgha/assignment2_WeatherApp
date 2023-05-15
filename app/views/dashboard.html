@@ -3,11 +3,29 @@
 
 #{menu id:"dashboard"/}
 
-#{list items:stations, as: 'station'}
-<div class="content box">
-  <h1 class="title">
-    ${station.name}
-  </h1>
-  #{listinformation station:station/}
-</div>
-#{/list}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+  </head>
+  <style>
+    h1{
+      text-align: center;
+    }
+    #details{
+      padding: 1.5em;
+    }
+  </style>
+  #{list items:stations, as: 'station'}
+  <div class="content box">
+    <h1>${station.name}</h1>
+    <div id="details" class="buttons is-centered">
+      <p>
+        <a href="/stations/${station.id}" class="button is-info is-rounded">Details</a>
+      </p>
+    </div>
+  </div>
+  #{/list}
+  #{addstation /}
+</html>
