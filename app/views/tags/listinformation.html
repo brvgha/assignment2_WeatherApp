@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script src = "https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+  </head>
   <table class="table">
     <thead>
     <tr>
@@ -27,6 +33,14 @@
       </td>
       <td>
           ${reading.pressure}
+      </td>
+      <td>
+        <a href="/stations/${_station.id}/deletereading/${reading.id}" class="button is-danger">
+          <span>Delete</span>
+          <span class="icon">
+            <i class="fas fa-trash"></i>
+          </span>
+        </a>
       </td>
     </tr>
     #{/list}

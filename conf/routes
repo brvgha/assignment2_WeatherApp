@@ -7,12 +7,18 @@ GET     /                                           Start.index
 GET     /dashboard                                  Dashboard.index
 POST    /dashboard/addstation                       Dashboard.addStation
 
+GET     /about.html                                 About.index
 GET     /about                                      About.index
 GET     /admin                                      Admin.index
 
 GET     /stations/{id}                              WeatherCtrl.index
 POST    /stations/{id}/addreading                   WeatherCtrl.addReading
 GET     /stations/{id}/deletereading/{readingid}    WeatherCtrl.deleteReading
+
+GET     /signup                                     Accounts.signup
+GET     /login                                      Accounts.login
+POST    /register                                   Accounts.registerNewUser
+POST    /authenticate                               Accounts.authenticateUser
 
 
 # Ignore favicon requests

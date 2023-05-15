@@ -21,18 +21,13 @@ public class Station extends Model {
         this.name = name;
     }
 
-    private Reading mostRecentReading(){
+    private Reading getLatestReading(){
         if (readings.size() > 0){
             return readings.get(readings.size() - 1);
         }
         else {
             return new Reading(0,0,0,0, 0);
         }
-    }
-
-    private Reading getLatestReading(){
-        Reading latestReading = readings.get(readings.size()-1);
-        return latestReading;
     }
 
     private float celsiusToFahrenheit(){

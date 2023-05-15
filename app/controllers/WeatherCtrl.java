@@ -21,7 +21,7 @@ public class WeatherCtrl extends Controller {
         station.readings.add(reading);
         station.save();
         Logger.info("Adding Reading" + code);
-        redirect("/stations/" + id);
+        redirect("stations/" + id);
     }
 
     public static void deleteReading(Long id, Long readingid){
