@@ -16,12 +16,12 @@ public class Accounts extends Controller {
         Logger.info("Registering new user " + email);
         Member member = new Member(firstname, lastname, email, password);
         member.save();
-        redirect("/");
+        redirect("/login");
     }
     public static void authenticateUser(String email, String password){
-        Logger.info("Authenticating user " + email + "with " + password);
+        Logger.info("Authenticating user " + email + " with " + password);
         Member member = Member.getByEmail(email);
-        if ((member != null) && (member.checkPassword(password))){
+        if ((member != null) && (member.checkPassword(password)==true)){
             Logger.info("Authentication successful");
             session.put("logged_in_Memberid",member.id);
             redirect("/dashboard");
@@ -41,5 +41,9 @@ public class Accounts extends Controller {
             login();
         }
         return member;
+    }
+    public static void logout(){
+        session.clear();
+        redirect("/");
     }
 }

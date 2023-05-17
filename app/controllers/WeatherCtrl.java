@@ -1,5 +1,6 @@
 package controllers;
 
+import org.joda.time.DateTime;
 import play.Logger;
 import play.mvc.Controller;
 import models.Reading;
@@ -21,7 +22,7 @@ public class WeatherCtrl extends Controller {
         station.readings.add(reading);
         station.save();
         Logger.info("Adding Reading" + code);
-        redirect("stations/" + id);
+        redirect("/stations/" + id);
     }
 
     public static void deleteReading(Long id, Long readingid){

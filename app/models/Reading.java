@@ -1,6 +1,7 @@
 package models;
 
 
+
 import play.db.jpa.Model;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;

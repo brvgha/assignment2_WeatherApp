@@ -3,16 +3,22 @@
 
 #{menu id:"dashboard"/}
 <style>
-  p{
+  .box.has-background-grey{
+    height: 100%;
     color: black;
+  }
+  p{
+    font-size: 14px;
   }
 </style>
 <div class="content box">
   <section>
-    <div class = "columns is-centred">
+    <div class = "columns is-centred ">
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
-          <h2 class="has-text-white">${station.name}</h2>
+          <h2 class="name has-text-white">${station.name}</h2>
+          <p>Lat: ${station.lat}</p>
+          <p>Lng: ${station.lng}</p>
         </div>
       </div>
       <div class = "column is-one-fifth" >
@@ -25,8 +31,10 @@
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
           <h2 class="temp has-text-white">Temp.</h2>
-          <p>${station.getLatestReading().temperature}&degC</p>
-          <p>${station.celsiusToFahrenheit()}&degF</p>
+          <p>Current (in Celsius): ${station.getLatestReading().temperature}&degC</p>
+          <p>Current (in Fahrenheit): ${station.celsiusToFahrenheit()}&degF</p>
+          <p>Min: ${station.getMinTemp()}&degC</p>
+          <p>Max: ${station.getMaxTemp()}&degC</p>
         </div>
       </div>
       <div class = "column is-one-fifth">
@@ -35,14 +43,13 @@
           <p>${station.kmhrToBeaufort()}bt</p>
           <p>${station.getLatestReading().windDirection}&deg</p>
           <p>${station.convertWindDirection()}</p>
-          <p>${station.calculateWindChill()}</p>
+          <p>Feels like: ${station.calculateWindChill()}</p>
         </div>
       </div>
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
           <h2 class="pressure has-text-white">Pressure</h2>
           <p>${station.getLatestReading().pressure}hPa</p>
-          <p></p>
         </div>
       </div>
     </div>
