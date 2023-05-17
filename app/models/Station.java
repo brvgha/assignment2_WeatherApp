@@ -1,5 +1,6 @@
 package models;
 
+import org.joda.time.DateTime;
 import play.db.jpa.Model;
 
 import javax.persistence.CascadeType;
@@ -14,14 +15,18 @@ import java.util.List;
 @Entity
 public class Station extends Model {
     public String name;
+    public float lat;
+    public float lng;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
     ;
-    public Station(String name){
+    public Station(String name, float lat, float lng){
         this.name = name;
+        this.lat = lat;
+        this.lng = lng;
     }
 
-    private Reading mostRecentReading(){
+    private Reading getLatestReading(){
         if (readings.size() > 0){
             return readings.get(readings.size() - 1);
         }
@@ -30,9 +35,71 @@ public class Station extends Model {
         }
     }
 
-    private Reading getLatestReading(){
-        Reading latestReading = readings.get(readings.size()-1);
-        return latestReading;
+    private float getMinTemp(){
+        int i = 1;
+        float lowestTemp = readings.get(0).temperature;
+        while (i != readings.size()){
+            if (readings.get(i).temperature < lowestTemp){
+                lowestTemp = readings.get(i).temperature;
+            }
+            i+=1;
+        }
+        return lowestTemp;
+    }
+    private float getMaxTemp(){
+        int i = 1;
+        float maxTemp = readings.get(0).temperature;
+        while (i != readings.size()){
+            if (readings.get(i).temperature > maxTemp){
+                maxTemp = readings.get(i).temperature;
+            }
+            i+=1;
+        }
+        return maxTemp;
+    }
+    private float getMinWindSpeed(){
+        int i = 1;
+        float lowestSpeed = readings.get(0).windSpeed;
+        while (i != readings.size()){
+            if (readings.get(i).windSpeed < lowestSpeed){
+                lowestSpeed = readings.get(i).windSpeed;
+            }
+            i+=1;
+        }
+        return lowestSpeed;
+    }
+    private float getMaxWindSpeed(){
+        int i = 1;
+        float maxSpeed = readings.get(0).windSpeed;
+        while (i != readings.size()){
+            if (readings.get(i).windSpeed > maxSpeed){
+                maxSpeed = readings.get(i).windSpeed;
+            }
+            i+=1;
+        }
+        return maxSpeed;
+    }
+    private float getMinPressure(){
+        int i = 1;
+        float lowestPressure = readings.get(0).pressure;
+        while (i != readings.size()){
+            if (readings.get(i).pressure < lowestPressure){
+                lowestPressure = readings.get(i).pressure;
+            }
+            i+=1;
+        }
+        return lowestPressure;
+    }
+    private float getMaxPressure(){
+        int i = 1;
+        float maxPressure = readings.get(0).pressure;
+        while (i != readings.size()){
+            if (readings.get(i).pressure > maxPressure){
+                maxPressure = readings.get(i).pressure;
+            }
+            i+=1;
+        }
+        return maxPressure;
     }
 
     private float celsiusToFahrenheit(){

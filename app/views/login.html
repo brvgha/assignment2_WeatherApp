@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    #{extends 'main.html' /}
+    #{set title:'Login' /}
+
+    #{welcomemenu id:"start"/}
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    </head>
+    <style>
+        .signup{
+            color: inherit;
+        }
+    </style>
+    <section class="content box">
+        <div class="columns">
+                <form class="column is-half" action="/authenticate" method="POST">
+                    <h3 class="subtitle">Log-in</h3>
+                    <div class="field is-horizontal field-body">
+                        <div class="field">
+                            <label class="label">Email</label> <input class="input" placeholder="Email" type="email" name="email">
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label> <input class="input" placeholder="Password" type="password" name="password">
+                        </div>
+                    </div>
+                    <button class="button is-link is-info">Login</button>
+                    <button class="button is-link is-info is-white"><a class="signup" href="/signup">Don't have an account?</a></button>
+                </form>
+
+            <div class="column is-half">
+                <figure class="image is-square">
+                    <img src="/public/images/weather2.png">
+                </figure>
+            </div>
+        </div>
+    </section>
+</html>
