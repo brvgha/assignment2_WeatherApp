@@ -16,19 +16,41 @@ public class Member extends Model {
     @OneToMany(cascade = CascadeType.ALL)
     public List<Station> stations = new ArrayList<Station>();
     public Member(String firstname, String lastname,String email, String password){
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
+        this.firstname = getFirstname();
+        this.lastname = getLastname();
+        this.email = getEmail();
+        this.password = getPassword();
     }
-    private String getFirstname(){
-        return firstname;
+    public String getFirstname(){
+        return this.firstname;
     }
 
     public static Member getByEmail(String email){
         return find("email", email).first();
     }
+
     public boolean checkPassword(String password){
-        return this.password.equals(password);
+        return getPassword().equals(password);
+    }
+    public String getPassword(){
+        return this.password = password;
+    }
+    public String setPassword(){
+        return password;
+    }
+    public String getEmail(){
+        return this.email = email;
+    }
+    public String setEmail(){
+        return email;
+    }
+    public String setFirstName(){
+        return firstname;
+    }
+    public String getLastname(){
+        return this.lastname = lastname;
+    }
+    public String setLastName(){
+        return lastname;
     }
 }

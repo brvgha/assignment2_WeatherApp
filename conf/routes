@@ -18,6 +18,8 @@ GET     /stations/{id}/deletereading/{readingid}    WeatherCtrl.deleteReading
 
 GET     /signup                                     Accounts.signup
 GET     /login                                      Accounts.login
+GET     /editaccount                                Accounts.editAccount
+POST    /changeuserdetails                          Accounts.changeUserDetails
 POST    /register                                   Accounts.registerNewUser
 POST    /authenticate                               Accounts.authenticateUser
 GET     /logout                                     Accounts.logout

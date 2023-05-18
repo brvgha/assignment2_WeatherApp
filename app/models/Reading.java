@@ -16,14 +16,19 @@ public class Reading extends Model {
     public int pressure;
     public float windDirection;
     public String dateTime;
+    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", Locale.UK);
 
     public Reading(String dateTime, int code, float temperature, float windSpeed, float windDirection,int pressure){
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", Locale.UK);
-        this.dateTime = dateTimeFormatter.format(LocalDateTime.now());
         this.code = code;
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.pressure = pressure;
         this.windDirection = windDirection;
+    }
+    private String setDateTime(){
+        return dateTime;
+    }
+    public String getDateTime(){
+        return this.dateTime = dateTimeFormatter.format(LocalDateTime.now());
     }
 }

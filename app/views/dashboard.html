@@ -16,10 +16,15 @@
     #details{
       padding: 1.5em;
     }
+    #latestreading{
+      text-align: center;
+      text-decoration: underline;
+    }
   </style>
   #{list items:stations, as: 'station'}
   <div class="content box">
     <h1>${station.name}</h1>
+    <h2 id="latestreading">Latest Reading:</h2>
     <table class="table">
       <thead>
         <tr>

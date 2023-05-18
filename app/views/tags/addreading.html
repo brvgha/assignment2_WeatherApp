@@ -1,3 +1,8 @@
+<style>
+  #buttons{
+    text-align: center;
+  }
+</style>
 <form action="/stations/${_station.id}/addreading" method="POST">
   <div class="columns">
     <div class="field column">
@@ -32,7 +37,7 @@
     </div>
   </div>
   <div class="field mt-4">
-    <div class="control">
+    <div id="buttons" class="control">
       <button class="button is-info">Add Reading</button>
     </div>
   </div>
