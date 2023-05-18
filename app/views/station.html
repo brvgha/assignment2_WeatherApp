@@ -30,7 +30,7 @@
       </div>
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
-          <h2 class="temp has-text-white">Temp.</h2>
+          <h2 class="temp has-text-white">Temp. ${station.trendTemp()}</h2>
           <p>Current (in Celsius): ${station.getLatestReading().temperature}&degC</p>
           <p>Current (in Fahrenheit): ${station.celsiusToFahrenheit()}&degF</p>
           <p>Min: ${station.getMinTemp()}&degC</p>
@@ -39,7 +39,7 @@
       </div>
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
-          <h2 class="wind has-text-white">Wind</h2>
+          <h2 class="wind has-text-white">Wind ${station.trendWind()}</h2>
           <p>${station.kmhrToBeaufort()}bt</p>
           <p>${station.getLatestReading().windDirection}&deg</p>
           <p>${station.convertWindDirection()}</p>
@@ -48,7 +48,7 @@
       </div>
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
-          <h2 class="pressure has-text-white">Pressure</h2>
+          <h2 class="pressure has-text-white">Pressure ${station.trendPressure()}</h2>
           <p>${station.getLatestReading().pressure}hPa</p>
         </div>
       </div>

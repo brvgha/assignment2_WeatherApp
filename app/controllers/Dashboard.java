@@ -25,10 +25,10 @@ public class Dashboard extends Controller
     redirect("/dashboard");
   }
 
-  public static void deleteStation(String name){
+  public static void deleteStation(Long id){
     Member member = Accounts.getLoggedMember();
-    Station station = Station.findById(name);
-    member.stations.remove(name);
+    Station station = Station.findById(id);
+    member.stations.remove(station);
     member.save();
     station.delete();
     Logger.info("Deleting " + station.name);

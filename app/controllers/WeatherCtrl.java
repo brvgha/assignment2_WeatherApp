@@ -8,6 +8,8 @@ import models.Station;
 import play.Logger;
 import play.mvc.Controller;
 
+import java.time.LocalDateTime;
+
 public class WeatherCtrl extends Controller {
     public static void index(Long id)
     {
@@ -16,8 +18,8 @@ public class WeatherCtrl extends Controller {
         render("station.html", station);
     }
 
-    public static void addReading(Long id, int code, float temperature, float windSpeed, int pressure, int windDirection){
-        Reading reading = new Reading(code, temperature, windSpeed, pressure, windDirection);
+    public static void addReading(Long id, String dateTime, int code, float temperature, float windSpeed, int pressure, int windDirection){
+        Reading reading = new Reading(dateTime, code, temperature, windSpeed, pressure, windDirection);
         Station station = Station.findById(id);
         station.readings.add(reading);
         station.save();

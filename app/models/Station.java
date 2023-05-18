@@ -1,11 +1,13 @@
 package models;
 
+import org.hibernate.type.TrueFalseType;
 import org.joda.time.DateTime;
 import play.db.jpa.Model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class Station extends Model {
             return readings.get(readings.size() - 1);
         }
         else {
-            return new Reading(0,0,0,0, 0);
+            return new Reading("ISO8601:1990-01-01T00:00:00+0000 ",0,0,0,0, 0);
         }
     }
 
@@ -235,5 +237,44 @@ public class Station extends Model {
     }
     private double calculateWindChill(){
         return (13.12 + (0.6215*getLatestReading().temperature) - (11.37*Math.pow(getLatestReading().windSpeed,0.16)) + (0.3965*getLatestReading().temperature*Math.pow(getLatestReading().windSpeed,0.16)));
+    }
+    private char trendTemp(){
+        float lastTemp = readings.get(readings.size()-1).temperature;
+        float secondLastTemp = readings.get(readings.size()-2).temperature;
+        float thirdLastTemp = readings.get(readings.size()-3).temperature;
+        if (thirdLastTemp > secondLastTemp && secondLastTemp > lastTemp){
+            return '↓';
+        } else if (lastTemp> secondLastTemp && secondLastTemp > thirdLastTemp) {
+            return '↑';
+        }
+        else {
+            return '↔';
+        }
+    }
+    private char trendWind(){
+        float lastWind = readings.get(readings.size()-1).windSpeed;
+        float secondLastWind = readings.get(readings.size()-2).windSpeed;
+        float thirdLastWind = readings.get(readings.size()-3).windSpeed;
+        if (thirdLastWind > secondLastWind && secondLastWind > lastWind){
+            return '↓';
+        } else if (lastWind> secondLastWind && secondLastWind > thirdLastWind) {
+            return '↑';
+        }
+        else {
+            return '↔';
+        }
+    }
+    private char trendPressure(){
+        float lastPressure = readings.get(readings.size()-1).pressure;
+        float secondLastPressure = readings.get(readings.size()-2).pressure;
+        float thirdLastPressure = readings.get(readings.size()-3).pressure;
+        if (thirdLastPressure > secondLastPressure && secondLastPressure > lastPressure){
+            return '↓';
+        } else if (lastPressure> secondLastPressure && secondLastPressure > thirdLastPressure) {
+            return '↑';
+        }
+        else {
+            return '↔';
+        }
     }
 }

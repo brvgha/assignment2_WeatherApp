@@ -20,9 +20,44 @@
   #{list items:stations, as: 'station'}
   <div class="content box">
     <h1>${station.name}</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date and Time</th>
+          <th>Code</th>
+          <th>Temperature</th>
+          <th>Wind Speed</th>
+          <th>Wind Direction</th>
+          <th>Pressure</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          ${station.getLatestReading().dateTime}
+        </td>
+        <td>
+          ${station.getLatestReading().code}
+        </td>
+        <td>
+          ${station.getLatestReading().temperature}
+        </td>
+        <td>
+          ${station.getLatestReading().windSpeed}
+        </td>
+        <td>
+          ${station.getLatestReading().windDirection}
+        </td>
+        <td>
+          ${station.getLatestReading().pressure}
+        </td>
+      </tr>
+      </tbody>
+    </table>
     <div id="details" class="buttons is-centered">
       <p>
         <a href="/stations/${station.id}" class="button is-info is-rounded">Details</a>
+        <a href="/dashboard/deletestation/${station.id}" class="button is-danger is-rounded">Delete</a>
       </p>
     </div>
   </div>
