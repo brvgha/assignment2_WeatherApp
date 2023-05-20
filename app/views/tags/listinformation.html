@@ -9,6 +9,7 @@
   <table class="table">
     <thead>
     <tr>
+      <th>Date and Time</th>
       <th>Code</th>
       <th>Temperature</th>
       <th>Wind Speed</th>
@@ -19,6 +20,9 @@
     <tbody>
     #{list items:_station.readings, as: 'reading'}
     <tr>
+      <td>
+          ${reading.dateTime}
+      </td>
       <td>
           ${reading.code}
       </td>

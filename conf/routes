@@ -6,6 +6,7 @@
 GET     /                                           Start.index
 GET     /dashboard                                  Dashboard.index
 POST    /dashboard/addstation                       Dashboard.addStation
+GET     /dashboard/deletestation/{id}               Dashboard.deleteStation
 
 GET     /about.html                                 About.index
 GET     /about                                      About.index
@@ -17,6 +18,8 @@ GET     /stations/{id}/deletereading/{readingid}    WeatherCtrl.deleteReading
 
 GET     /signup                                     Accounts.signup
 GET     /login                                      Accounts.login
+GET     /editaccount                                Accounts.editAccount
+POST    /changeuserdetails                          Accounts.changeUserDetails
 POST    /register                                   Accounts.registerNewUser
 POST    /authenticate                               Accounts.authenticateUser
 GET     /logout                                     Accounts.logout

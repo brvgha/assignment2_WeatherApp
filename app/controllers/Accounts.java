@@ -1,6 +1,5 @@
 package controllers;
 
-import jdk.internal.net.http.common.Log;
 import models.Member;
 import play.Logger;
 import play.mvc.Controller;
@@ -11,6 +10,9 @@ public class Accounts extends Controller {
     }
     public static void login(){
         render("login.html");
+    }
+    public static void editAccount(){
+        render("editaccount.html");
     }
     public static void registerNewUser(String firstname, String lastname, String email, String password){
         Logger.info("Registering new user " + email);
@@ -30,6 +32,14 @@ public class Accounts extends Controller {
             Logger.info("Authentication failed");
             redirect("/login");
         }
+    }
+    public static void changeUserDetails(String firstname, String lastname, String password){
+        Member member = getLoggedMember();
+        member.firstname = firstname;
+        member.lastname = lastname;
+        member.password = password;
+        member.save();
+        redirect("/login");
     }
     public static Member getLoggedMember(){
         Member member = null;

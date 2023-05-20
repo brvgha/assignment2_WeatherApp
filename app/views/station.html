@@ -2,6 +2,9 @@
 #{set title:'Station' /}
 
 #{menu id:"dashboard"/}
+<head>
+  <script src="https://kit.fontawesome.com/8b8adb5b3f.js" crossorigin="anonymous"></script>
+</head>
 <style>
   .box.has-background-grey{
     height: 100%;
@@ -10,27 +13,83 @@
   p{
     font-size: 14px;
   }
+  .fa-solid.fa-location-dot{
+    color: black;
+  }
+  .fa-solid.fa-wind{
+    padding-left: 1em;
+  }
+  .fa-solid.fa-arrow-up{
+    padding-left: 0.25em;
+  }
+  .fa-solid.fa-arrow-down{
+    padding-left: 0.25em;
+  }
+  .fa-solid.fa-gem{
+    padding-left: 1em;
+  }
+
+
 </style>
 <div class="content box">
   <section>
     <div class = "columns is-centred ">
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
-          <h2 class="name has-text-white">${station.name}</h2>
+          <h2 class="name has-text-white">${station.name} <span class="icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </span></h2>
           <p>Lat: ${station.lat}</p>
           <p>Lng: ${station.lng}</p>
         </div>
       </div>
       <div class = "column is-one-fifth" >
         <div class="box has-background-grey">
-          <h2 class="weather has-text-white">Weather</h2>
+          <h2 class="weather has-text-white">Weather
+          #{if station.predictWeather() == "Clear"}<span class="icon"><i class="fa-solid fa-sun"></i>
+            </span>
+            #{/if}
+            #{if station.predictWeather() == "Partial Clouds"}<span class="icon"><i class="fa-solid fa-cloud-sun"></i>
+            </span>
+            #{/if}
+            #{if station.predictWeather() == "Cloudy"}<span class="icon"><i class="fa-solid fa-cloud"></i>
+            </span>
+            #{/if}
+            #{if station.predictWeather() == "Light Showers"}<span class="icon"><i class="fa-solid fa-cloud-sun-rain"></i>
+            </span>
+            #{/if}
+            #{if station.predictWeather() == "Heavy Showers"}<span class="icon"><i class="fa-solid fa-cloud-showers-heavy"></i>
+            </span>
+            #{/if}
+            #{if station.predictWeather() == "Rain"}<span class="icon"><i class="fa-solid fa-umbrella"></i>
+            </span>
+            #{/if}
+            #{if station.predictWeather() == "Snow"}<span class="icon"><i class="fa-solid fa-snowflake"></i>
+            </span>
+            #{/if}
+            #{if station.predictWeather() == "Thunder"}<span class="icon"><i class="fa-solid fa-cloud-bolt"></i>
+            </span>
+            #{/if}
+          </h2>
+          </h2>
           <p>${station.predictWeather()}</p>
-          <p></p>
         </div>
       </div>
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
-          <h2 class="temp has-text-white">Temp.</h2>
+          <h2 class="temp has-text-white">Temperature #{if station.trendTemp() == "UP"}<span class="icon">
+            <i class="fa-solid fa-temperature-arrow-up"></i>
+          </span>
+            #{/if}
+            #{if station.trendTemp() == "DOWN"}<span class="icon">
+            <i class="fa-solid fa-temperature-arrow-down"></i>
+          </span>
+            #{/if}
+            #{if station.trendTemp() == "STEADY"}<span class="icon">
+            <i class="fa-solid fa-temperature-quarter"></i>
+          </span>
+            #{/if}
+          </h2>
           <p>Current (in Celsius): ${station.getLatestReading().temperature}&degC</p>
           <p>Current (in Fahrenheit): ${station.celsiusToFahrenheit()}&degF</p>
           <p>Min: ${station.getMinTemp()}&degC</p>
@@ -39,17 +98,48 @@
       </div>
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
-          <h2 class="wind has-text-white">Wind</h2>
+          <h2 class="wind has-text-white">Wind #{if station.trendWind() == "UP"}<span class="icon">
+            <i class="fa-solid fa-wind"></i>
+            <i class="fa-solid fa-arrow-up"></i>
+          </span>
+            #{/if}
+            #{if station.trendWind() == "DOWN"}<span class="icon">
+            <i class="fa-solid fa-wind"></i>
+              <i class="fa-solid fa-arrow-down"></i>
+          </span>
+            #{/if}
+            #{if station.trendWind() == "STEADY"}<span class="icon">
+            <i class="fa-solid fa-wind"></i>
+          </span>
+            #{/if}</h2>
           <p>${station.kmhrToBeaufort()}bt</p>
+          <p>Max: ${station.getMaxWindSpeed()}km/hr</p>
+          <p>Min: ${station.getMinWindSpeed()}km/hr</p>
           <p>${station.getLatestReading().windDirection}&deg</p>
           <p>${station.convertWindDirection()}</p>
-          <p>Feels like: ${station.calculateWindChill()}</p>
+          <p>Feels like: ${station.calculateWindChill()}&degC</p>
         </div>
       </div>
       <div class = "column is-one-fifth">
         <div class="box has-background-grey">
-          <h2 class="pressure has-text-white">Pressure</h2>
+          <h2 class="pressure has-text-white">Pressure #{if station.trendPressure() == "UP"}<span class="icon">
+            <i class="fa-solid fa-gem"></i>
+            <i class="fa-solid fa-arrow-up"></i>
+          </span>
+            #{/if}
+            #{if station.trendPressure() == "DOWN"}<span class="icon">
+            <i class="fa-solid fa-gem"></i>
+              <i class="fa-solid fa-arrow-down"></i>
+          </span>
+            #{/if}
+            #{if station.trendPressure() == "STEADY"}<span class="icon">
+            <i class="fa-solid fa-gem"></i>
+          </span>
+            #{/if}
+          </h2>
           <p>${station.getLatestReading().pressure}hPa</p>
+          <p>Max: ${station.getMaxPressure()}hPa</p>
+          <p>Min: ${station.getMinPressure()}hPa</p>
         </div>
       </div>
     </div>

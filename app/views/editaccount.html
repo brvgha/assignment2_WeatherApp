@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    #{extends 'main.html' /}
-    #{set title:'Signup' /}
+#{extends 'main.html' /}
+#{set title:'Dashboard' /}
 
-    #{welcomemenu id:"start"/}
+#{menu id:"dashboard"/}
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -11,14 +11,14 @@
         <script src="https://kit.fontawesome.com/8b8adb5b3f.js" crossorigin="anonymous"></script>
     </head>
     <style>
-        .login{
-            color: inherit;
+        #button{
+            color: white;
         }
     </style>
     <section class="content box">
         <div class="columns">
-            <div class="column is-half"> <form action="/register" method="POST">
-                <h3 class="subtitle">Register</h3>
+            <form class="column is-half" action="/changeuserdetails" method="POST">
+                <h3 class="subtitle">Change Details</h3>
                 <div class="field is-horizontal field-body">
                     <div class="field">
                         <label class="label">First Name</label>
@@ -26,28 +26,29 @@
                             <input class="input" type="text" placeholder="First Name" name="firstname">
                         </p>
                     </div>
+
                     <div class="field">
                         <label class="label">Last Name</label>
-                        <p class="control">
+                        <p class="control is-expanded">
                             <input class="input" type="text" placeholder="Last Name" name="lastname">
                         </p>
                     </div>
+
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <p class="control is-expanded">
+                            <input class="input" placeholder="Password" type="password" name="password">
+                        </p>
+
+                    </div>
                 </div>
                 <div class="field">
-                    <label class="label">Email</label>
-                    <input class="input" placeholder="Email" type="email" name="email">
+                    <button id="button" class="button is-link is-info">Change Details</button>
                 </div>
-                <div class="field">
-                    <label class="label">Password</label>
-                    <input class="input" type="password" placeholder="Password" name="password">
-                </div>
-                <button class="button is-link is-info">Submit</button>
-                <button class="button is-link is-info"><a class="login" href="/login">Already have an account?</a></button>
-                </form>
-            </div>
+            </form>
             <div class="column is-half">
                 <figure class="image is-square">
-                    <img src="/public/images/weather.png">
+                    <img src="/public/images/weather2.png">
                 </figure>
             </div>
         </div>

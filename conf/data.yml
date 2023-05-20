@@ -1,5 +1,5 @@
 Reading(r1):
-  date: 2021-01-19 08:31:00
+  dateTime: 2021-01-19 08:31:00
   code: 800
   temperature: 0.5
   windSpeed: 3.5
@@ -7,7 +7,7 @@ Reading(r1):
   pressure: 1001
 
 Reading(r2):
-  date: 2021-01-20 09:34:00
+  dateTime: 2021-01-20 09:34:00
   code: 600
   temperature: 6.0
   windSpeed: 2
@@ -15,7 +15,7 @@ Reading(r2):
   pressure: 1004
 
 Reading(r3):
-  date: 2021-01-20 10:32:00
+  dateTime: 2021-01-20 10:32:00
   code: 700
   temperature: 8.0
   windSpeed: 1
@@ -23,12 +23,28 @@ Reading(r3):
   pressure: 1000
 
 Reading(r4):
-  date: 2021-01-21 15:26:00
+  dateTime: 2021-01-21 15:26:00
   code: 200
   temperature: 0.5
   windSpeed: 3.5
   windDirection: 120
   pressure: 999
+
+Reading(r5):
+  dateTime: 2021-01-20 09:34:00
+  code: 400
+  temperature: 7
+  windSpeed: 1
+  windDirection: 347
+  pressure: 1005
+
+Reading(r6):
+  dateTime: 2021-01-20 09:34:00
+  code: 300
+  temperature: 5.2
+  windSpeed: 5
+  windDirection: 92
+  pressure: 994
 
 Station(s1):
   name: Tramore
@@ -37,6 +53,7 @@ Station(s1):
   readings:
     - r1
     - r2
+    - r5
 
 Station(s2):
   name: Dunmore
@@ -45,6 +62,7 @@ Station(s2):
   readings:
     - r3
     - r4
+    - r6
 
 Member(m1):
   firstname: homer
