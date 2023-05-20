@@ -46,28 +46,28 @@
       <div class = "column is-one-fifth" >
         <div class="box has-background-grey">
           <h2 class="weather has-text-white">Weather
-          #{if station.predictWeather() == "Clear"}<i class="fa-solid fa-sun"></i>
+          #{if station.predictWeather() == "Clear"}<span class="icon"><i class="fa-solid fa-sun"></i>
             </span>
             #{/if}
-            #{if station.predictWeather() == "Partial Clouds"}<i class="fa-solid fa-cloud-sun"></i>
+            #{if station.predictWeather() == "Partial Clouds"}<span class="icon"><i class="fa-solid fa-cloud-sun"></i>
             </span>
             #{/if}
-            #{if station.predictWeather() == "Cloudy"}<i class="fa-solid fa-cloud"></i>
+            #{if station.predictWeather() == "Cloudy"}<span class="icon"><i class="fa-solid fa-cloud"></i>
             </span>
             #{/if}
-            #{if station.predictWeather() == "Light Showers"}<i class="fa-solid fa-cloud-sun-rain"></i>
+            #{if station.predictWeather() == "Light Showers"}<span class="icon"><i class="fa-solid fa-cloud-sun-rain"></i>
             </span>
             #{/if}
-            #{if station.predictWeather() == "Heavy Showers"}<i class="fa-solid fa-cloud-showers-heavy"></i>
+            #{if station.predictWeather() == "Heavy Showers"}<span class="icon"><i class="fa-solid fa-cloud-showers-heavy"></i>
             </span>
             #{/if}
-            #{if station.predictWeather() == "Rain"}<i class="fa-solid fa-umbrella"></i>
+            #{if station.predictWeather() == "Rain"}<span class="icon"><i class="fa-solid fa-umbrella"></i>
             </span>
             #{/if}
-            #{if station.predictWeather() == "Snow"}<i class="fa-solid fa-snowflake"></i>
+            #{if station.predictWeather() == "Snow"}<span class="icon"><i class="fa-solid fa-snowflake"></i>
             </span>
             #{/if}
-            #{if station.predictWeather() == "Thunder"}<i class="fa-solid fa-cloud-bolt"></i>
+            #{if station.predictWeather() == "Thunder"}<span class="icon"><i class="fa-solid fa-cloud-bolt"></i>
             </span>
             #{/if}
           </h2>
