@@ -12,7 +12,7 @@ public class Dashboard extends Controller
     Logger.info("Rendering Dashboard");
     Member member = Accounts.getLoggedMember();
     List<Station> stations = member.stations;
-    render ("dashboard.html", stations);
+    render ("dashboard.html", member, stations);
   }
   public static void addStation(String name, float latitude, float longitude){
     Member member = Accounts.getLoggedMember();

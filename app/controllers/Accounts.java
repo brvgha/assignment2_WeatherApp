@@ -1,6 +1,5 @@
 package controllers;
 
-import jdk.internal.net.http.common.Log;
 import models.Member;
 import play.Logger;
 import play.mvc.Controller;

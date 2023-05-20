@@ -8,6 +8,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/8b8adb5b3f.js" crossorigin="anonymous"></script>
   </head>
   <style>
     h1{
@@ -21,6 +22,10 @@
       text-decoration: underline;
     }
   </style>
+  <header class="title">
+    Hi there, ${member.firstname} ${member.lastname}!
+  </header>
+
   #{list items:stations, as: 'station'}
   <div class="content box">
     <h1>${station.name}</h1>

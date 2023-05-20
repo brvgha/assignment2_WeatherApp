@@ -1,14 +1,10 @@
 package controllers;
 
-import org.joda.time.DateTime;
 import play.Logger;
 import play.mvc.Controller;
 import models.Reading;
 import models.Station;
-import play.Logger;
-import play.mvc.Controller;
 
-import java.time.LocalDateTime;
 
 public class WeatherCtrl extends Controller {
     public static void index(Long id)

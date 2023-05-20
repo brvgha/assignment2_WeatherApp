@@ -1,13 +1,11 @@
 package models;
 
-import org.hibernate.type.TrueFalseType;
-import org.joda.time.DateTime;
 import play.db.jpa.Model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.time.LocalDateTime;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +17,7 @@ public class Station extends Model {
     public String name;
     public float lat;
     public float lng;
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
     ;
@@ -36,6 +35,7 @@ public class Station extends Model {
             return new Reading("ISO8601:1990-01-01T00:00:00+0000 ",0,0,0,0, 0);
         }
     }
+
 
     private float getMinTemp(){
         int i = 1;
@@ -59,9 +59,9 @@ public class Station extends Model {
         }
         return maxTemp;
     }
-    private float getMinWindSpeed(){
+    private double getMinWindSpeed(){
         int i = 1;
-        float lowestSpeed = readings.get(0).windSpeed;
+        double lowestSpeed = readings.get(0).windSpeed;
         while (i != readings.size()){
             if (readings.get(i).windSpeed < lowestSpeed){
                 lowestSpeed = readings.get(i).windSpeed;
@@ -70,9 +70,9 @@ public class Station extends Model {
         }
         return lowestSpeed;
     }
-    private float getMaxWindSpeed(){
+    private double getMaxWindSpeed(){
         int i = 1;
-        float maxSpeed = readings.get(0).windSpeed;
+        double maxSpeed = readings.get(0).windSpeed;
         while (i != readings.size()){
             if (readings.get(i).windSpeed > maxSpeed){
                 maxSpeed = readings.get(i).windSpeed;
@@ -235,46 +235,46 @@ public class Station extends Model {
         }
         return "U";
     }
-    private double calculateWindChill(){
-        return (13.12 + (0.6215*getLatestReading().temperature) - (11.37*Math.pow(getLatestReading().windSpeed,0.16)) + (0.3965*getLatestReading().temperature*Math.pow(getLatestReading().windSpeed,0.16)));
+    private String calculateWindChill(){
+        return df.format((13.12 + (0.6215*getLatestReading().temperature) - (11.37*Math.pow(getLatestReading().windSpeed,0.16)) + (0.3965*getLatestReading().temperature*Math.pow(getLatestReading().windSpeed,0.16))));
     }
-    private char trendTemp(){
+    private String trendTemp(){
         float lastTemp = readings.get(readings.size()-1).temperature;
         float secondLastTemp = readings.get(readings.size()-2).temperature;
         float thirdLastTemp = readings.get(readings.size()-3).temperature;
         if (thirdLastTemp > secondLastTemp && secondLastTemp > lastTemp){
-            return '↓';
+            return "UP";
         } else if (lastTemp> secondLastTemp && secondLastTemp > thirdLastTemp) {
-            return '↑';
+            return "DOWN";
         }
         else {
-            return '↔';
+            return "STEADY";
         }
     }
-    private char trendWind(){
-        float lastWind = readings.get(readings.size()-1).windSpeed;
-        float secondLastWind = readings.get(readings.size()-2).windSpeed;
-        float thirdLastWind = readings.get(readings.size()-3).windSpeed;
+    private String trendWind(){
+        double lastWind = readings.get(readings.size()-1).windSpeed;
+        double secondLastWind = readings.get(readings.size()-2).windSpeed;
+        double thirdLastWind = readings.get(readings.size()-3).windSpeed;
         if (thirdLastWind > secondLastWind && secondLastWind > lastWind){
-            return '↓';
+            return "UP";
         } else if (lastWind> secondLastWind && secondLastWind > thirdLastWind) {
-            return '↑';
+            return "DOWN";
         }
         else {
-            return '↔';
+            return "STEADY";
         }
     }
-    private char trendPressure(){
+    private String trendPressure(){
         float lastPressure = readings.get(readings.size()-1).pressure;
         float secondLastPressure = readings.get(readings.size()-2).pressure;
         float thirdLastPressure = readings.get(readings.size()-3).pressure;
         if (thirdLastPressure > secondLastPressure && secondLastPressure > lastPressure){
-            return '↓';
+            return "UP";
         } else if (lastPressure> secondLastPressure && secondLastPressure > thirdLastPressure) {
-            return '↑';
+            return "DOWN";
         }
         else {
-            return '↔';
+            return "STEADY";
         }
     }
 }
