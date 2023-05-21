@@ -51,16 +51,17 @@
           ${station.getLatestReading().code}
         </td>
         <td>
-          ${station.getLatestReading().temperature}
+          ${station.getLatestReading().temperature}&degC
+          ${station.celciusToFahrenheit())&degF
         </td>
         <td>
-          ${station.getLatestReading().windSpeed}
+          ${station.getLatestReading().windSpeed}km/hr
         </td>
         <td>
-          ${station.getLatestReading().windDirection}
+          ${station.getLatestReading().windDirection}&deg
         </td>
         <td>
-          ${station.getLatestReading().pressure}
+          ${station.getLatestReading().pressure}hPa
         </td>
       </tr>
       </tbody>
