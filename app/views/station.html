@@ -160,8 +160,14 @@
             #{/if}
           </h2>
           <p>${station.getLatestReading().pressure}hPa</p>
-          <p>Max: ${station.getMaxPressure()}hPa</p>
-          <p>Min: ${station.getMinPressure()}hPa</p>
+          <div class="columns">
+            <div class="column">
+              <p>Max: ${station.getMaxPressure()}hPa</p>
+            </div>
+            <div class="column">
+              <p>Min: ${station.getMinPressure()}hPa</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
