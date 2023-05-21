@@ -14,7 +14,7 @@ public class WeatherCtrl extends Controller {
         render("station.html", station);
     }
 
-    public static void addReading(Long id, String dateTime, int code, float temperature, float windSpeed, int pressure, int windDirection){
+    public static void addReading(Long id, String dateTime, int code, float temperature, float windSpeed, int windDirection, int pressure){
         Reading reading = new Reading(dateTime, code, temperature, windSpeed, pressure, windDirection);
         Station station = Station.findById(id);
         station.readings.add(reading);
