@@ -257,52 +257,55 @@ public class Station extends Model {
     }
     private String convertWindDirection(){
         float windDirection = getLatestReading().windDirection;
-        if (windDirection >= 348.75 | windDirection <= 11.25){
+        if (windDirection >= 348.75 && windDirection <= 360){
             return "N";
         }
-        if (windDirection > 11.25 | windDirection <= 33.75){
+        if (windDirection >= 0 && windDirection <= 11.25){
+            return "N";
+        }
+        if (windDirection > 11.25 && windDirection <= 33.75){
             return "NNE";
         }
-        if (windDirection > 33.75 | windDirection <= 56.25){
+        if (windDirection > 33.75 && windDirection <= 56.25){
             return "NE";
         }
-        if (windDirection > 56.25 | windDirection <= 78.75){
+        if (windDirection > 56.25 && windDirection <= 78.75){
             return "ENE";
         }
-        if (windDirection >78.75 | windDirection <= 101.25){
+        if (windDirection >78.75 && windDirection <= 101.25){
             return "E";
         }
-        if (windDirection >101.25 | windDirection <= 123.75){
+        if (windDirection >101.25 && windDirection <= 123.75){
             return "ESE";
         }
-        if (windDirection >123.75 | windDirection <= 146.25){
+        if (windDirection >123.75 && windDirection <= 146.25){
             return "SE";
         }
-        if (windDirection >146.25 | windDirection <= 168.75){
+        if (windDirection >146.25 && windDirection <= 168.75){
             return "SSE";
         }
-        if (windDirection >168.75| windDirection <= 191.25){
+        if (windDirection >168.75 && windDirection <= 191.25){
             return "S";
         }
-        if (windDirection >191.25 | windDirection <= 213.25){
+        if (windDirection >191.25 && windDirection <= 213.25){
             return "SSW";
         }
-        if (windDirection >213.25 | windDirection <= 236.25){
+        if (windDirection >213.25 && windDirection <= 236.25){
             return "SW";
         }
-        if (windDirection >236.25 | windDirection <= 258.75){
+        if (windDirection >236.25 && windDirection <= 258.75){
             return "WSW";
         }
-        if (windDirection >258.75 | windDirection <= 281.25){
+        if (windDirection >258.75 && windDirection <= 281.25){
             return "W";
         }
-        if (windDirection >281.25 | windDirection <= 303.75){
+        if (windDirection >281.25 && windDirection <= 303.75){
             return "WNW";
         }
-        if (windDirection >303.75 | windDirection <= 326.25){
+        if (windDirection >303.75 && windDirection <= 326.25){
             return "NW";
         }
-        if (windDirection >326.25 | windDirection <= 348.75){
+        if (windDirection > 326.25 && windDirection < 348.75){
             return "NNW";
         }
         return "U";
