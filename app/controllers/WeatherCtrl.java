@@ -5,8 +5,13 @@ import play.mvc.Controller;
 import models.Reading;
 import models.Station;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 
 public class WeatherCtrl extends Controller {
+    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", Locale.UK);
     public static void index(Long id)
     {
         Station station = Station.findById(id);
@@ -14,8 +19,8 @@ public class WeatherCtrl extends Controller {
         render("station.html", station);
     }
 
-    public static void addReading(Long id, String dateTime, int code, float temperature, float windSpeed, int windDirection, int pressure){
-        Reading reading = new Reading(dateTime, code, temperature, windSpeed, pressure, windDirection);
+    public static void addReading(Long id, int code, float temperature, float windSpeed, int windDirection, int pressure){
+        Reading reading = new Reading(dateTimeFormatter.format(LocalDateTime.now()), code, temperature, windSpeed,windDirection,pressure);
         Station station = Station.findById(id);
         station.readings.add(reading);
         station.save();
