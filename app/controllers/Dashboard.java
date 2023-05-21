@@ -22,9 +22,9 @@ public class Dashboard extends Controller
     redirect("/dashboard");
   }
 
-  public static void deleteStation(Long id, Long stationid){
-    Member member = Member.findById(id);
-    Station station = Station.findById(stationid);
+  public static void deleteStation(Long id){
+    Member member = Accounts.getLoggedMember();
+    Station station = Station.findById(id);
     member.stations.remove(station);
     member.save();
     station.delete();
