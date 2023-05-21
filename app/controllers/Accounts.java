@@ -5,6 +5,8 @@ import models.Member;
 import play.Logger;
 import play.mvc.Controller;
 
+import java.util.Objects;
+
 public class Accounts extends Controller {
     public static void signup(){
         render("signup.html");
@@ -36,13 +38,13 @@ public class Accounts extends Controller {
     }
     public static void changeUserDetails(String firstname, String lastname, String password){
         Member member = getLoggedMember();
-        if (firstname != null) {
+        if (!Objects.equals(firstname, "")) {
             member.firstname = firstname;
         }
-        if (lastname != null){
+        if (!Objects.equals(lastname, "")){
             member.lastname = lastname;
         }
-        if (password != null){
+        if (!Objects.equals(password, "")){
             member.password = password;
         }
         member.save();
