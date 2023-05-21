@@ -3,6 +3,8 @@ Name : Brugha Fitzpatrick Student Number: 20104109
 This is an interactive web application that allows users to check stations and enter the weather for the local area. A user may input a code (determines the weather), the wind speed, temperature, and more. The user also has the ability to delete their stations and readings. They can also edit their personal details such as first name, last name, and password.
 
 Known bugs/problems:
+- Date Time formatting
+- Alphabetical ordering of the stations
 
 References: Any sources referred to during the development of the assignment:
 Source of text, images and icons if used:
@@ -24,11 +26,13 @@ Source of text, images and icons if used:
   o https://fontawesome.com/icons/cloud-sun-rain?f=classic&s=solid
   o https://fontawesome.com/icons/cloud-sun?f=classic&s=solid
   o https://fontawesome.com/icons/cloud-showers-heavy?f=classic&s=solid
+
 - Images
   o https://www.pngwing.com/en/free-png-dhpsj
   o https://www.pngwing.com/en/free-png-yjefz
   o https://www.pngwing.com/en/free-png-bfsno/download?width=1080
-  References:
+  
+- References:
 - Kieron Garvey on Slack re Date and Time, Font awesome error, and deployment.
 - https://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html
 - https://www.baeldung.com/java-round-decimal-number
