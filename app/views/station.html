@@ -134,7 +134,7 @@
             <i class="fa-solid fa-wind"></i>
           </span>
             #{/if}</h2>
-          <p>${station.kmhrToBeaufort()}bt</p>
+          <p>${station.kmhrToBeaufort()}bt <span>${station.beaufortLabel()}</span></p>
           <p>Max: ${station.getMaxWindSpeed()}km/hr</p>
           <p>Min: ${station.getMinWindSpeed()}km/hr</p>
           <p>${station.getLatestReading().windDirection}&deg</p>

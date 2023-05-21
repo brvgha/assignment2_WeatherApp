@@ -179,6 +179,45 @@ public class Station extends Model {
         }
         return 0;
     }
+    private String beaufortLabel(){
+        if (kmhrToBeaufort() == 0){
+            return "Calm";
+        }
+        if (kmhrToBeaufort() == 1){
+            return "Light Air";
+        }
+        if (kmhrToBeaufort() == 2){
+            return "Light Breeze";
+        }
+        if (kmhrToBeaufort() == 3){
+            return "Gentle Breeze";
+        }
+        if (kmhrToBeaufort() == 4){
+            return "Moderate Breeze";
+        }
+        if (kmhrToBeaufort() == 5){
+            return "Fresh Breeze";
+        }
+        if (kmhrToBeaufort() == 6){
+            return "Strong Breeze";
+        }
+        if (kmhrToBeaufort() == 7){
+            return "Near Gale";
+        }
+        if (kmhrToBeaufort() == 8){
+            return "Gale";
+        }
+        if (kmhrToBeaufort() == 9){
+            return "Severe Gale";
+        }
+        if (kmhrToBeaufort() == 10){
+            return "Strong Storm";
+        }
+        if (kmhrToBeaufort() == 11){
+            return "Violent Storm";
+        }
+        return "Unknown";
+    }
     private String predictWeather(){
         ArrayList<String> typesOfWeather = new ArrayList<String>();
         typesOfWeather.add("Clear");
