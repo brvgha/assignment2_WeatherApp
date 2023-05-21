@@ -274,14 +274,14 @@ public class Station extends Model {
         return df.format((13.12 + (0.6215*getLatestReading().temperature) - (11.37*Math.pow(getLatestReading().windSpeed,0.16)) + (0.3965*getLatestReading().temperature*Math.pow(getLatestReading().windSpeed,0.16))));
     }
     private String trendTemp(){
-        if (readings.size()>3) {
+        if (readings.size()>=3) {
             float lastTemp = readings.get(readings.size() - 1).temperature;
             float secondLastTemp = readings.get(readings.size() - 2).temperature;
             float thirdLastTemp = readings.get(readings.size() - 3).temperature;
             if (thirdLastTemp > secondLastTemp && secondLastTemp > lastTemp) {
-                return "UP";
-            } else if (lastTemp > secondLastTemp && secondLastTemp > thirdLastTemp) {
                 return "DOWN";
+            } else if (lastTemp > secondLastTemp && secondLastTemp > thirdLastTemp) {
+                return "UP";
             } else {
                 return "STEADY";
             }
@@ -291,14 +291,14 @@ public class Station extends Model {
         }
     }
     private String trendWind(){
-        if (readings.size()>3) {
+        if (readings.size()>=3) {
             double lastWind = readings.get(readings.size() - 1).windSpeed;
             double secondLastWind = readings.get(readings.size() - 2).windSpeed;
             double thirdLastWind = readings.get(readings.size() - 3).windSpeed;
             if (thirdLastWind > secondLastWind && secondLastWind > lastWind) {
-                return "UP";
-            } else if (lastWind > secondLastWind && secondLastWind > thirdLastWind) {
                 return "DOWN";
+            } else if (lastWind > secondLastWind && secondLastWind > thirdLastWind) {
+                return "UP";
             } else {
                 return "STEADY";
             }
@@ -308,14 +308,14 @@ public class Station extends Model {
         }
     }
     private String trendPressure(){
-        if (readings.size()>3) {
+        if (readings.size()>=3) {
             float lastPressure = readings.get(readings.size() - 1).pressure;
             float secondLastPressure = readings.get(readings.size() - 2).pressure;
             float thirdLastPressure = readings.get(readings.size() - 3).pressure;
             if (thirdLastPressure > secondLastPressure && secondLastPressure > lastPressure) {
-                return "UP";
-            } else if (lastPressure > secondLastPressure && secondLastPressure > thirdLastPressure) {
                 return "DOWN";
+            } else if (lastPressure > secondLastPressure && secondLastPressure > thirdLastPressure) {
+                return "UP";
             } else {
                 return "STEADY";
             }
