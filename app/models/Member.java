@@ -18,10 +18,10 @@ public class Member extends Model {
     @OneToMany(cascade = CascadeType.ALL)
     public List<Station> stations = new ArrayList<Station>();
     public Member(String firstname, String lastname,String email, String password){
-        this.firstname = getFirstname();
-        this.lastname = getLastname();
-        this.email = getEmail();
-        this.password = getPassword();
+        this.firstname = WordUtils.capitalize(firstname);
+        this.lastname = WordUtils.capitalize(lastname);
+        this.email = email;
+        this.password = password;
     }
 
     public static Member getByEmail(String email){
@@ -29,36 +29,21 @@ public class Member extends Model {
     }
 
     public boolean checkPassword(String password){
-        return getPassword().equals(password);
+        return this.password.equals(password);
     }
 
 
-    public String getEmail(){
-        return this.email;
+    public List<Station> sortStations(){
+        List<Station> sortedStations = new ArrayList<Station>();
+        for (int i = 0; i<stations.size();i++){
+            for (int j =1; j <stations.size()-1;i++)
+            if (stations.get(i).getName().compareTo(stations.get(j).getName()) < 0){
+                sortedStations.add(stations.get(i));
+            }
+            else if (stations.get(i).getName().compareTo(stations.get(j).getName()) > 0){
+                sortedStations.add(stations.get(j));
+            }
+        }
+        return sortedStations;
     }
-    public String getFirstname(){
-        return WordUtils.capitalize(this.firstname);
-    }
-    public String getLastname(){
-        return WordUtils.capitalize(this.lastname) ;
-    }
-    public String getPassword(){
-        return this.password;
-    }
-    public String setFirstName(){
-        return firstname;
-    }
-    public String setLastName(){
-        return lastname;
-    }
-    public String setEmail(){
-        return email;
-    }
-    public String setPassword(){
-        return password;
-    }
-
-    /*public List<Station> sortStations(<List>Station station){
-        station.sort(Comparator.comparing(Station.getName));
-    }*/
 }

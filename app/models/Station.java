@@ -6,10 +6,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
-
+import java.util.Locale;
 
 
 @Entity
@@ -18,6 +19,7 @@ public class Station extends Model {
     public float lat;
     public float lng;
     private static final DecimalFormat df = new DecimalFormat("0.00");
+    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", Locale.UK);
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
     ;
@@ -32,76 +34,109 @@ public class Station extends Model {
             return readings.get(readings.size() - 1);
         }
         else {
-            return new Reading("ISO8601:1990-01-01T00:00:00+0000 ",0,0,0,0, 0);
+            return new Reading(dateTimeFormatter.format(LocalDateTime.now()),0,0,0,0, 0);
         }
     }
 
+    public String getName(){
+        return this.name = name;
+    }
 
     private float getMinTemp(){
         int i = 1;
-        float lowestTemp = readings.get(0).temperature;
-        while (i != readings.size()){
-            if (readings.get(i).temperature < lowestTemp){
-                lowestTemp = readings.get(i).temperature;
+        if (readings.size()>0) {
+            float lowestTemp = readings.get(0).temperature;
+            while (i != readings.size()) {
+                if (readings.get(i).temperature < lowestTemp) {
+                    lowestTemp = readings.get(i).temperature;
+                }
+                i += 1;
             }
-            i+=1;
+            return lowestTemp;
         }
-        return lowestTemp;
+        else {
+            return 0;
+        }
     }
     private float getMaxTemp(){
         int i = 1;
-        float maxTemp = readings.get(0).temperature;
-        while (i != readings.size()){
-            if (readings.get(i).temperature > maxTemp){
-                maxTemp = readings.get(i).temperature;
+        if (readings.size()>0) {
+            float maxTemp = readings.get(0).temperature;
+            while (i != readings.size()) {
+                if (readings.get(i).temperature > maxTemp) {
+                    maxTemp = readings.get(i).temperature;
+                }
+                i += 1;
             }
-            i+=1;
+            return maxTemp;
         }
-        return maxTemp;
+        else {
+            return 0;
+        }
     }
     private double getMinWindSpeed(){
         int i = 1;
-        double lowestSpeed = readings.get(0).windSpeed;
-        while (i != readings.size()){
-            if (readings.get(i).windSpeed < lowestSpeed){
-                lowestSpeed = readings.get(i).windSpeed;
+        if (readings.size()>0) {
+            double lowestSpeed = readings.get(0).windSpeed;
+            while (i != readings.size()) {
+                if (readings.get(i).windSpeed < lowestSpeed) {
+                    lowestSpeed = readings.get(i).windSpeed;
+                }
+                i += 1;
             }
-            i+=1;
+            return lowestSpeed;
         }
-        return lowestSpeed;
+        else {
+            return 0;
+        }
     }
     private double getMaxWindSpeed(){
         int i = 1;
-        double maxSpeed = readings.get(0).windSpeed;
-        while (i != readings.size()){
-            if (readings.get(i).windSpeed > maxSpeed){
-                maxSpeed = readings.get(i).windSpeed;
+        if (readings.size()>0) {
+            double maxSpeed = readings.get(0).windSpeed;
+            while (i != readings.size()) {
+                if (readings.get(i).windSpeed > maxSpeed) {
+                    maxSpeed = readings.get(i).windSpeed;
+                }
+                i += 1;
             }
-            i+=1;
+            return maxSpeed;
         }
-        return maxSpeed;
+        else {
+            return 0;
+        }
     }
     private float getMinPressure(){
         int i = 1;
-        float lowestPressure = readings.get(0).pressure;
-        while (i != readings.size()){
-            if (readings.get(i).pressure < lowestPressure){
-                lowestPressure = readings.get(i).pressure;
+        if (readings.size() > 0) {
+            float lowestPressure = readings.get(0).pressure;
+            while (i != readings.size()) {
+                if (readings.get(i).pressure < lowestPressure) {
+                    lowestPressure = readings.get(i).pressure;
+                }
+                i += 1;
             }
-            i+=1;
+            return lowestPressure;
         }
-        return lowestPressure;
+        else {
+            return 0;
+        }
     }
     private float getMaxPressure(){
         int i = 1;
-        float maxPressure = readings.get(0).pressure;
-        while (i != readings.size()){
-            if (readings.get(i).pressure > maxPressure){
-                maxPressure = readings.get(i).pressure;
+        if (readings.size()>0) {
+            float maxPressure = readings.get(0).pressure;
+            while (i != readings.size()) {
+                if (readings.get(i).pressure > maxPressure) {
+                    maxPressure = readings.get(i).pressure;
+                }
+                i += 1;
             }
-            i+=1;
+            return maxPressure;
         }
-        return maxPressure;
+        else {
+            return 0;
+        }
     }
 
     private float celsiusToFahrenheit(){
@@ -239,39 +274,51 @@ public class Station extends Model {
         return df.format((13.12 + (0.6215*getLatestReading().temperature) - (11.37*Math.pow(getLatestReading().windSpeed,0.16)) + (0.3965*getLatestReading().temperature*Math.pow(getLatestReading().windSpeed,0.16))));
     }
     private String trendTemp(){
-        float lastTemp = readings.get(readings.size()-1).temperature;
-        float secondLastTemp = readings.get(readings.size()-2).temperature;
-        float thirdLastTemp = readings.get(readings.size()-3).temperature;
-        if (thirdLastTemp > secondLastTemp && secondLastTemp > lastTemp){
-            return "UP";
-        } else if (lastTemp> secondLastTemp && secondLastTemp > thirdLastTemp) {
-            return "DOWN";
+        if (readings.size()>3) {
+            float lastTemp = readings.get(readings.size() - 1).temperature;
+            float secondLastTemp = readings.get(readings.size() - 2).temperature;
+            float thirdLastTemp = readings.get(readings.size() - 3).temperature;
+            if (thirdLastTemp > secondLastTemp && secondLastTemp > lastTemp) {
+                return "UP";
+            } else if (lastTemp > secondLastTemp && secondLastTemp > thirdLastTemp) {
+                return "DOWN";
+            } else {
+                return "STEADY";
+            }
         }
         else {
             return "STEADY";
         }
     }
     private String trendWind(){
-        double lastWind = readings.get(readings.size()-1).windSpeed;
-        double secondLastWind = readings.get(readings.size()-2).windSpeed;
-        double thirdLastWind = readings.get(readings.size()-3).windSpeed;
-        if (thirdLastWind > secondLastWind && secondLastWind > lastWind){
-            return "UP";
-        } else if (lastWind> secondLastWind && secondLastWind > thirdLastWind) {
-            return "DOWN";
+        if (readings.size()>3) {
+            double lastWind = readings.get(readings.size() - 1).windSpeed;
+            double secondLastWind = readings.get(readings.size() - 2).windSpeed;
+            double thirdLastWind = readings.get(readings.size() - 3).windSpeed;
+            if (thirdLastWind > secondLastWind && secondLastWind > lastWind) {
+                return "UP";
+            } else if (lastWind > secondLastWind && secondLastWind > thirdLastWind) {
+                return "DOWN";
+            } else {
+                return "STEADY";
+            }
         }
         else {
             return "STEADY";
         }
     }
     private String trendPressure(){
-        float lastPressure = readings.get(readings.size()-1).pressure;
-        float secondLastPressure = readings.get(readings.size()-2).pressure;
-        float thirdLastPressure = readings.get(readings.size()-3).pressure;
-        if (thirdLastPressure > secondLastPressure && secondLastPressure > lastPressure){
-            return "UP";
-        } else if (lastPressure> secondLastPressure && secondLastPressure > thirdLastPressure) {
-            return "DOWN";
+        if (readings.size()>3) {
+            float lastPressure = readings.get(readings.size() - 1).pressure;
+            float secondLastPressure = readings.get(readings.size() - 2).pressure;
+            float thirdLastPressure = readings.get(readings.size() - 3).pressure;
+            if (thirdLastPressure > secondLastPressure && secondLastPressure > lastPressure) {
+                return "UP";
+            } else if (lastPressure > secondLastPressure && secondLastPressure > thirdLastPressure) {
+                return "DOWN";
+            } else {
+                return "STEADY";
+            }
         }
         else {
             return "STEADY";

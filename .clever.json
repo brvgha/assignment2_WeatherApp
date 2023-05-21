@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "app_id": "app_f9312322-7b71-423f-aff8-aa9b22cc29b8",
+      "org_id": "user_fd50e6e9-cc79-483f-880c-4d1bb85300ae",
+      "deploy_url": "https://push-n2-par-clevercloud-customers.services.clever-cloud.com/app_f9312322-7b71-423f-aff8-aa9b22cc29b8.git",
+      "name": "WeatherTop",
+      "alias": "WeatherTop"
+    }
+  ]
+}

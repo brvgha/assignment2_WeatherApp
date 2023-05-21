@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/8b8adb5b3f.js" crossorigin="anonymous"></script>
   </head>
   <style>
-    h1{
+    h1,h2{
       text-align: center;
     }
     #details{
@@ -29,7 +29,8 @@
   #{list items:stations, as: 'station'}
   <div class="content box">
     <h1>${station.name}</h1>
-    <h2 id="latestreading">Latest Reading:</h2>
+    <h2>Latitude: ${station.lat} Longitude: ${station.lng}</h2>
+    <h3 id="latestreading">Latest Reading:</h3>
     <table class="table">
       <thead>
         <tr>
