@@ -161,10 +161,10 @@
           <p>Feels like: ${station.calculateWindChill()}&degC</p>
           <div class="columns">
             <div class="column">
-              <p>Max: ${station.getMaxWindSpeed()}km/hr</p>
+              <p>Min: ${station.getMinWindSpeed()}km/hr</p>
             </div>
             <div class="column">
-              <p>Min: ${station.getMinWindSpeed()}km/hr</p>
+              <p>Max: ${station.getMaxWindSpeed()}km/hr</p>
             </div>
           </div>
         </div>
@@ -189,10 +189,10 @@
           <p>${station.getLatestReading().pressure}hPa</p>
           <div class="columns">
             <div class="column">
-              <p>Max: ${station.getMaxPressure()}hPa</p>
+              <p>Min: ${station.getMinPressure()}hPa</p>
             </div>
             <div class="column">
-              <p>Min: ${station.getMinPressure()}hPa</p>
+              <p>Max: ${station.getMaxPressure()}hPa</p>
             </div>
           </div>
         </div>
