@@ -25,9 +25,9 @@ public class Reading extends Model {
     public static String parseDateTime(LocalDateTime dateTime){
 
         if (dateTime != null) {
-            return dateTimeFormatter.format(dateTime); //uses your formatter to format the date/time from Yaml file
+            return dateTimeFormatter.format(dateTime);
         } else {
-            return dateTimeFormatter.format(LocalDateTime.now()); //Get Current Date Time & Set formatted String
+            return dateTimeFormatter.format(LocalDateTime.now());
         }
     }
 }
