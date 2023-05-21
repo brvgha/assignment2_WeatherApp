@@ -39,8 +39,8 @@
           <h2 class="name has-text-white">${station.name} <span class="icon">
             <i class="fa-solid fa-location-dot"></i>
           </span></h2>
-          <p>Lat: ${station.lat}</p>
-          <p>Lng: ${station.lng}</p>
+          <p>Lat: ${station.lat}&deg</p>
+          <p>Lng: ${station.lng}&deg</p>
         </div>
       </div>
       <div class = "column is-one-fifth" >
@@ -70,7 +70,6 @@
             #{if station.predictWeather() == "Thunder"}<span class="icon"><i class="fa-solid fa-cloud-bolt"></i>
             </span>
             #{/if}
-          </h2>
           </h2>
           <p>${station.predictWeather()}</p>
         </div>
