@@ -33,8 +33,8 @@ public class Accounts extends Controller {
             redirect("/login");
         }
     }
-    public static void changeUserDetails(String email,String firstname, String lastname, String password){
-        Member member = Member.getByEmail(email);
+    public static void changeUserDetails(Long id,String firstname, String lastname, String password){
+        Member member = Member.findById(id);
         member.firstname = firstname;
         member.lastname = lastname;
         member.password = password;

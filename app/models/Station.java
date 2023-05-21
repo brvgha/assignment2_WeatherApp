@@ -18,15 +18,15 @@ public class Station extends Model {
     public String name;
     public float lat;
     public float lng;
-    private static final DecimalFormat df = new DecimalFormat("0.00");
+    private static final DecimalFormat df = new DecimalFormat("00.00");
     public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", Locale.UK);
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
     ;
     public Station(String name, float lat, float lng){
         this.name = name;
-        this.lat = lat;
-        this.lng = lng;
+        this.lat = Float.parseFloat(df.format(lat));
+        this.lng = Float.parseFloat(df.format(lng));
     }
 
     private Reading getLatestReading(){
