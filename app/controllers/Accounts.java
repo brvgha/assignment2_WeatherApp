@@ -1,5 +1,6 @@
 package controllers;
 
+import com.thoughtworks.xstream.mapper.Mapper;
 import models.Member;
 import play.Logger;
 import play.mvc.Controller;
@@ -35,9 +36,15 @@ public class Accounts extends Controller {
     }
     public static void changeUserDetails(String firstname, String lastname, String password){
         Member member = getLoggedMember();
-        member.firstname = firstname;
-        member.lastname = lastname;
-        member.password = password;
+        if (firstname != null) {
+            member.firstname = firstname;
+        }
+        if (lastname != null){
+            member.lastname = lastname;
+        }
+        if (password != null){
+            member.password = password;
+        }
         member.save();
         redirect("/login");
     }
