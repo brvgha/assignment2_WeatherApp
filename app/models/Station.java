@@ -11,14 +11,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-
 @Entity
 public class Station extends Model {
     public String name;
     public float lat;
     public float lng;
-    private static final DecimalFormat df = new DecimalFormat("00.00");
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", Locale.UK);
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
@@ -139,8 +137,8 @@ public class Station extends Model {
         }
     }
 
-    private float celsiusToFahrenheit(){
-        return (getLatestReading().temperature * 9/5) + 32;
+    private String celsiusToFahrenheit(){
+        return df.format((getLatestReading().temperature * 9/5) + 32);
     }
     private int kmhrToBeaufort(){
         if (getLatestReading().windSpeed <= 1){
