@@ -8,7 +8,7 @@
 <style>
   .box.has-background-grey{
     height: 100%;
-    color: black;
+    color: ghostwhite;
   }
   p{
     font-size: 16px;
@@ -114,8 +114,14 @@
           </h2>
           <p>Current (in Celsius): ${station.getLatestReading().temperature}&degC</p>
           <p>Current (in Fahrenheit): ${station.celsiusToFahrenheit()}&degF</p>
-          <p>Min: ${station.getMinTemp()}&degC</p>
-          <p>Max: ${station.getMaxTemp()}&degC</p>
+          <div class="columns">
+            <div class="column">
+              <p>Min: ${station.getMinTemp()}&degC</p>
+            </div>
+            <div class="column">
+              <p>Max: ${station.getMaxTemp()}&degC</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class = "column is-one-fifth">
@@ -135,11 +141,17 @@
           </span>
             #{/if}</h2>
           <p>${station.kmhrToBeaufort()}bt <span>${station.beaufortLabel()}</span></p>
-          <p>Max: ${station.getMaxWindSpeed()}km/hr</p>
-          <p>Min: ${station.getMinWindSpeed()}km/hr</p>
           <p>${station.getLatestReading().windDirection}&deg</p>
           <p>${station.convertWindDirection()}</p>
           <p>Feels like: ${station.calculateWindChill()}&degC</p>
+          <div class="columns">
+            <div class="column">
+              <p>Max: ${station.getMaxWindSpeed()}km/hr</p>
+            </div>
+            <div class="column">
+              <p>Min: ${station.getMinWindSpeed()}km/hr</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class = "column is-one-fifth">
