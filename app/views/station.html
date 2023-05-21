@@ -28,7 +28,30 @@
   .fa-solid.fa-gem{
     padding-left: 1em;
   }
-
+  .fa-solid.fa-sun{
+    color: yellow;
+  }
+  .fa-solid.fa-cloud-sun{
+    color: yellow;
+  }
+  .fa-solid.fa-cloud-sun-rain{
+    color: yellow;
+  }
+  .fa-solid.fa-cloud-showers-heavy{
+    color: grey;
+  }
+  .fa-solid.fa-temperature-arrow-up{
+    color: red;
+  }
+  .fa-solid.fa-temperature-arrow-up{
+    color: dodgerblue;
+  }
+  .fa-solid.fa-wind{
+    color: lawngreen;
+  }
+  .fa-solid.fa-gem{
+    color: blueviolet;
+  }
 
 </style>
 <div class="content box">
@@ -99,12 +122,12 @@
         <div class="box has-background-grey">
           <h2 class="wind has-text-white">Wind #{if station.trendWind() == "UP"}<span class="icon">
             <i class="fa-solid fa-wind"></i>
-            <i class="fa-solid fa-arrow-up"></i>
+            <i class="fa-solid fa-arrow-up" style="color: red"></i>
           </span>
             #{/if}
             #{if station.trendWind() == "DOWN"}<span class="icon">
             <i class="fa-solid fa-wind"></i>
-              <i class="fa-solid fa-arrow-down"></i>
+              <i class="fa-solid fa-arrow-down" style="color: dodgerblue"></i>
           </span>
             #{/if}
             #{if station.trendWind() == "STEADY"}<span class="icon">
@@ -123,12 +146,12 @@
         <div class="box has-background-grey">
           <h2 class="pressure has-text-white">Pressure #{if station.trendPressure() == "UP"}<span class="icon">
             <i class="fa-solid fa-gem"></i>
-            <i class="fa-solid fa-arrow-up"></i>
+            <i class="fa-solid fa-arrow-up" style="color: red"></i>
           </span>
             #{/if}
             #{if station.trendPressure() == "DOWN"}<span class="icon">
             <i class="fa-solid fa-gem"></i>
-              <i class="fa-solid fa-arrow-down"></i>
+              <i class="fa-solid fa-arrow-down" style="color: dodgerblue"></i>
           </span>
             #{/if}
             #{if station.trendPressure() == "STEADY"}<span class="icon">
